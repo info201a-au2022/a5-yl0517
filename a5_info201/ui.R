@@ -25,13 +25,13 @@ introduction_page <- tabPanel(
     aka the highest or lowest values only."),
   p("My 3 selected values of interest are GDP, CO2 per capita, and population. These
     selected values of interest will help answer the following questions: "),
-  p("1. When was the World GDP the highest and what was the GDP?"),
+  p(em("1. When was the World GDP the highest and what was the GDP?")),
   p("A: ", when_highest_gdp, ",", what_highest_gdp),
-  p("2. Does highest GDP have correlations with highest CO2 per capita?"),
+  p(em("2. Does highest GDP have correlations with highest CO2 per capita?")),
   dataTableOutput('table'),
   p("A: according to the table above, there doesn't seem to be much correlation
     between highest GDP and CO2 per capita"),
-  p("3. Does population have an impact on highest GPD or highest CO2 per capita?"),
+  p(em("3. Does population have an impact on highest GPD or highest CO2 per capita?")),
   p("A: Not much. Highly populated countries like China and India didn't have the
     highest GDP or CO2 of all time"),
   h3("Description of Variables (referenced from owid's codebook)"),
@@ -52,7 +52,10 @@ data_visualization <- tabPanel(
   ),
   
   plotlyOutput('scatterplot'),
-  p("This scatterplot "),
+  p("This scatterplot shows the highest GDP and highest CO2 Per Capita for user-selected
+    countries. From this scatterplot, we can learn that GDP and CO2 Per Capita doesn't
+    have as much of a correlation as most people might think. There are a lot of
+    outliars and it is hard to locate or come up with a correlation/trend."),
   
 )
 
