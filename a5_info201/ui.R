@@ -7,26 +7,41 @@
 #    http://shiny.rstudio.com/
 #
 
+
 library(shiny)
+library(dplyr)
+library(tidyverse)
+library(plotly)
 
 # Define UI for application that draws a histogram
 introduction_page <- tabPanel(
   "Introduction", 
-  h1(strong("CO2 Emissions")),
+  h1(strong("CO2 Emissions: Extreme Numbers")),
   p("Through this report, we will be taking a look at some interesting statistical
-    facts and analysis that can be drawn from it. We be comparing things like GDP to
-    CO2 per capita and how it may have changed over time."),
+    facts and analysis that can be drawn from \"owid\"'s data. We be comparing 
+    things like GDP to CO2 per capita and how it may have changed over time. To
+    make things interesting, we will only be taking a look at the most EXTREME values,
+    aka the highest or lowest values only."),
   p("My 3 selected values of interest are GDP, CO2 per capita, and population. These
     selected values of interest will help answer the following questions: "),
   p("1. When was the World GDP the highest and what was the GDP?"),
   p("A: ", when_highest_gdp, ",", what_highest_gdp),
-  p("2. Does high GDP have correlations with high CO2 per capita?"),
-  p("3. Does population have an impact on GPD or CO2 per capita?"),
+  p("2. Does highest GDP have correlations with highest CO2 per capita?"),
+  dataTableOutput('table'),
+  p("A: according to the table above, there doesn't seem to be much correlation
+    between highest GDP and CO2 per capita"),
+  p("3. Does population have an impact on highest GPD or highest CO2 per capita?"),
+  p("A: Not much. Highly populated countries like China and India didn't have the
+    highest GDP or CO2 of all time"),
+  h3("Description of Variables (referenced from owid's codebook)"),
+  p("GDP: Gross domestic product measured in international-$ using 2011 prices to adjust for price changes over time (inflation) and price differences between countries. Calculated by multiplying GDP per capita with population."),
+  p("CO2 per capita: Annual total production-based emissions of carbon dioxide (CO₂), excluding land-use change, measured in tonnes per person. This is based on territorial emissions, which do not account for emissions embedded in traded goods."),
+  p("Population: Population of each country or region.")
 )
 data_visualization <- tabPanel(
-  "Population Trends", 
-  h1(strong("Population Trends of Asian Countries")),
-  p("Select a country and time range to view the population trends"),
+  "Interactive Scatterplot", 
+  h1(strong("Scatterplot of GDP and CO2 Per Capita")),
+  p("This scatterplot "),
   
 )
 
