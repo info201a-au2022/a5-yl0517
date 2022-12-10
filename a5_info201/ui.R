@@ -12,6 +12,7 @@ library(shiny)
 library(dplyr)
 library(tidyverse)
 library(plotly)
+library(ggplot2)
 
 # Define UI for application that draws a histogram
 introduction_page <- tabPanel(
@@ -41,6 +42,16 @@ introduction_page <- tabPanel(
 data_visualization <- tabPanel(
   "Interactive Scatterplot", 
   h1(strong("Scatterplot of GDP and CO2 Per Capita")),
+  
+  selectizeInput(
+    inputId = "Country", 
+    label = "Select Countries", 
+    choices = c(gdp_co2_pop$country), 
+    selected = "Afghanistan",
+    multiple = TRUE
+  ),
+  
+  plotlyOutput('scatterplot'),
   p("This scatterplot "),
   
 )
