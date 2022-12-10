@@ -37,25 +37,22 @@ gdp_co2_pop <- dataset_without_world %>%
 shinyServer(function(input, output) {
   output$table <- renderDataTable(gdp_co2_pop)
   
-  
   reactive_data <- reactive({ 
     gdp_co2_pop %>% 
       filter(country %in% input$Country)
   })
-  
-  
-  
+
   output$scatterplot <- renderPlotly({ggplotly(ggplot(reactive_data()) +
-                                                 geom_point(mapping = aes(
-                                                   x = gdp, 
-                                                   y = co2_per_capita, 
-                                                   text = paste("Country:", country, "\nPopulation: ", population)
-                                                 ), alpha = .5) +
-                                                 labs(
-                                                   title = "GDP vs CO2 Per Capita",
-                                                   x = "GDP ($)",
-                                                   y = "CO2 Per Capita (tonnes)"
-                                                 ) 
+                                               geom_point(mapping = aes(
+                                               x = gdp, 
+                                               y = co2_per_capita, 
+                                               text = paste("Country:", country, "\nPopulation: ", population)
+                                               ), alpha = .5) +
+                                               labs(
+                                               title = "GDP vs CO2 Per Capita",
+                                               x = "GDP ($)",
+                                               y = "CO2 Per Capita (tonnes)"
+                                               ) 
   )
   })
 
