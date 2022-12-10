@@ -14,7 +14,28 @@ library(tidyverse)
 library(plotly)
 library(ggplot2)
 
-# Define UI for application that draws a histogram
+
+dataset <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owid-co2-data.csv")
+
+when_highest_gdp <- dataset %>% 
+  filter(country == "World") %>% 
+  filter(gdp == max(gdp, na.rm = TRUE)) %>% 
+  pull(year)
+what_highest_gdp <- dataset %>% 
+  filter(country == "World") %>% 
+  filter(gdp == max(gdp, na.rm = TRUE)) %>% 
+  pull(gdp)
+
+
+dataset_without_world <- dataset %>% 
+  filter(country != "World")
+
+gdp_co2_pop <- dataset_without_world %>% 
+  group_by(country) %>% 
+  filter(gdp == max(gdp, na.rm = TRUE)) %>% 
+  summarize(country, gdp, co2_per_capita, population)
+
+
 introduction_page <- tabPanel(
   "Introduction", 
   h1(strong("CO2 Emissions: Extreme Numbers")),
