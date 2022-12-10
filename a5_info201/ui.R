@@ -42,21 +42,22 @@ introduction_page <- tabPanel(
 data_visualization <- tabPanel(
   "Interactive Scatterplot", 
   h1(strong("Scatterplot of GDP and CO2 Per Capita")),
-  
-  selectizeInput(
-    inputId = "Country", 
-    label = "Select Countries", 
-    choices = c(gdp_co2_pop$country), 
-    selected = "Afghanistan",
-    multiple = TRUE
+  sidebarPanel(
+    selectizeInput(
+      inputId = "Country", 
+      label = "Select Countries", 
+      choices = c(gdp_co2_pop$country), 
+      selected = "Afghanistan",
+      multiple = TRUE
+    ),
   ),
-  
-  plotlyOutput('scatterplot'),
-  p("This scatterplot shows the highest GDP and highest CO2 Per Capita for user-selected
-    countries. From this scatterplot, we can learn that GDP and CO2 Per Capita doesn't
-    have as much of a correlation as most people might think. There are a lot of
-    outliars and it is hard to locate or come up with a correlation/trend."),
-  
+  mainPanel(
+    plotlyOutput('scatterplot'),
+    p("This scatterplot shows the highest GDP and highest CO2 Per Capita for user-selected
+      countries. From this scatterplot, we can learn that GDP and CO2 Per Capita doesn't
+      have as much of a correlation as most people might think. There are a lot of
+      outliars and it is hard to locate or come up with a correlation/trend."),
+  )
 )
 
 

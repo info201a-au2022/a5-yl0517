@@ -33,7 +33,6 @@ gdp_co2_pop <- dataset_without_world %>%
   filter(gdp == max(gdp, na.rm = TRUE)) %>% 
   summarize(country, gdp, co2_per_capita, population)
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
   output$table <- renderDataTable(gdp_co2_pop)
   
